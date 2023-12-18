@@ -4,7 +4,7 @@ from linear_methods.doolittle import *
 from linear_methods.crout import *
 from linear_methods.cholesky import *
 from linear_methods.jacobi_iteration import *
-from operations import Service
+from operations import Operations
 
 
 class LinearFactory:
