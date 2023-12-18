@@ -16,7 +16,7 @@ class Operations:
         for i in range(len(vect)):
             if new[i] == 0:
                 return True
-            if abs((new[i] - vect[i]) / new[i]) >= tolerance:
+            if abs((new[i] - vect[i]) / new[i]) * 100 >= tolerance:
                 return False
         return True
 
