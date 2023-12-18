@@ -6,6 +6,7 @@ from math import sqrt, floor, log10
 class Cholesky:
     def __init__(self, A, b, sf):
         self.b = b
+        print(b)
         self.A = A
         # self.x = x
         self.sf = sf
@@ -19,7 +20,9 @@ class Cholesky:
         return round(x, -int(floor(log10(abs(x)))) + (precision - 1))
     
     def checkDefPos(self, A):
+        print(A)
         eigenvalues = np.linalg.eigvals(A)
+        print(eigenvalues)
         if all(eig > 0 for eig in eigenvalues):
             return True
         return False
@@ -85,7 +88,9 @@ class Cholesky:
 
 
 A = np.array([[5,2,-1],[2,8,1],[1,-1,4]], dtype= float)
-b = np.array([1,2,3])
+print(A)
+b = np.array([1,2,3], dtype=float)
+print(b)
 # x = np.array(['x','y','z'])
 sf = 5
 solver = Cholesky(A, b, sf)
