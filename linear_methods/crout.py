@@ -3,8 +3,7 @@ from math import floor, log10
 
 
 class Crout:
-    def __init__(self, A, b, x, sf):
-        self.x = x
+    def __init__(self, A, b, sf):
         self.A = A
         self.b = b
         self.sf = sf

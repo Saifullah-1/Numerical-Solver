@@ -3,12 +3,11 @@ from math import floor, log10
 
 
 class Doolittle:
-    def __init__(self, A, b, x, sf:int):
+    def __init__(self, A, b, sf:int):
         self.b = b
         self.A = A
         print(self.A)
         print(self.b)
-        self.x = x
         self.sf = sf
         self.result = ""
 
