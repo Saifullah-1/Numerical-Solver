@@ -1,4 +1,5 @@
 from math import floor, log10
+from sympy import false, true
 
 
 class Operations:
@@ -15,8 +16,9 @@ class Operations:
     def check_continue(new, vect, tolerance):  # check the stopping condition
         for i in range(len(vect)):
             if new[i] == 0:
-                return True
+                return true
             if abs((new[i] - vect[i]) / new[i]) * 100 >= tolerance:
-                return False
-        return True
+                return false
+        return true
+
 

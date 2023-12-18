@@ -1,34 +1,39 @@
-from linear_methods.gauss_elimination import *
-from linear_methods.gauss_jordan import *
-from linear_methods.doolittle import *
-from linear_methods.crout import *
-from linear_methods.cholesky import *
+# from linear_methods.doolittle import *
+# from linear_methods.crout import *
+# from linear_methods.cholesky import *
+from linear_methods.Gauss import Gauss
+from linear_methods.HandleEquations import PrepareEquations
+from linear_methods.gauss_seidel import *
 from linear_methods.jacobi_iteration import *
-from operations import Operations
+from linear_methods.GaussGordan import *
 
 
 class LinearFactory:
-    def __init__(self, method, equations, precision, initial_guess=None, stopping_cond=None):
+    def __init__(self, method, equations, precision, initial_guess=0, iterations=0, error=0):
         self.method = method.lower()
-        self.equations = Operations.handle_equations(equations)
+        self.augmentedMatrix, self.coeff, self.unknowns, self.results = PrepareEquations(equations)
         self.precision = int(precision)
         self.initial_guess = initial_guess
-        self.stopping_cond = stopping_cond
+        self.iterations = int(iterations)
+        self.error = float(error)
 
     def create(self):
         if self.method == "gauss elimination":
-            return GaussElimination(self.precision)
+            return Gauss(self.augmentedMatrix, self.coeff, self.unknowns, self.results, self.precision)
         elif self.method == "gauss jordan":
-            return GaussJordan()
+            return GaussJordan(self.augmentedMatrix, self.coeff, self.unknowns, self.results, self.precision)
         elif self.method == "doolittle":
-            return Doolittle()
+            # return Doolittle()
+            pass
         elif self.method == "crout":
-            return Crout()
+            # return Crout()
+            pass
         elif self.method == "cholesky":
-            return Cholesky()
+            pass
+            # return Cholesky()
         elif self.method == "gauss seidel":
-            return GaussSeidel()
+            return GaussSeidel(self.augmentedMatrix.tolist(), self.initial_guess, self.iterations, self.error, self.precision)
         elif self.method == "jacobi iteration":
-            return Jacobi()
+            return Jacobi(self.augmentedMatrix.tolist(), self.initial_guess, self.iterations, self.error, self.precision)
         else:
             return None

@@ -1,10 +1,4 @@
-import string
 import numpy as np
-from itertools import permutations
-from pickle import TRUE
-import re
-from sympy import false, summation, true
-from math import floor, log10
 
 from Service.operations import Operations
 
@@ -18,6 +12,10 @@ class Jacobi:  # version that takes iterations
         self.precision = precision
 
     def execute(self):
+        for k in range(len(self.augmentedMatrix)):
+            for y in range(len(self.augmentedMatrix)):
+                if k == y and self.augmentedMatrix[k][y] == 0:
+                    return "NO SOLUTION"
         for i in range(len(self.augmentedMatrix)):
             for j in range(len(self.augmentedMatrix[0])):
                 if self.augmentedMatrix[i][j] != 0:
