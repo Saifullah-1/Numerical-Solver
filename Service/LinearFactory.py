@@ -32,9 +32,9 @@ class LinearFactory:
         elif self.method == "gauss jordan":
             return GaussJordan(self.augmentedMatrix, self.coeff, self.unknowns, self.results, self.precision)
         elif self.method == "doolittle":
-            return Doolittle(self.coeff.tolist(), self.results.flatten().tolist(), self.unknowns.tolist(), self.precision)
+            return Doolittle(np.array(self.coeff), np.array(self.results.flatten()), self.precision)
         elif self.method == "crout":
-            return Crout(self.augmentedMatrix.tolist(), self.unknowns.tolist(), self.precision)
+            return Crout(np.array(self.coeff), np.array(self.results.flatten()), self.precision)
         elif self.method == "cholesky":
             return Cholesky(np.array(self.coeff), np.array(self.results.flatten()), self.precision)
         elif self.method == "gauss seidel":

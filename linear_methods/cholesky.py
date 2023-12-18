@@ -11,7 +11,7 @@ class Cholesky:
         self.sf = sf
         self.result = ""
 
-    def sig_figs(self,x: float):
+    def sig_figs(self, x: float):
         if x == 0:
             return x
         x = float(x)

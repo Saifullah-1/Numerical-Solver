@@ -3,7 +3,6 @@ from math import floor, log10
 
 
 class Crout:
-
     def __init__(self, A, b, x, sf):
         self.x = x
         self.A = A
@@ -81,5 +80,3 @@ class Crout:
                 sum +=self.sig_figs(U[i, j] * x[j])
             x[i] = self.sig_figs((y[i] - sum) / U[i, i])
             self.result += f"x{1+i} = ( {y[i]} - {sum} ) / {U[i,i]} = {x[i]}\n"
-
-
