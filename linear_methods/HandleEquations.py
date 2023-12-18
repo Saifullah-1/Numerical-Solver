@@ -49,12 +49,14 @@ def PrepareEquations(equs):
             for j in range (len(coeff[0])):
                 if coeff[i][j] == '-' : coeff[i][j] = -1.0
                 elif coeff[i][j] == '+' : coeff[i][j] = 1.0
-                else : coeff[i][j]=float(coeff[i][j])
+                elif coeff[i][j] == '' : coeff[i][j] = 1.0
+                elif coeff[i][j].isspace() : coeff[i][j] = 1.0
+                else : coeff[i][j] = float(coeff[i][j])
         for i in range (len(res)) :
             res[i] = float(res[i])
         return coeff,res
         
-    def getAugMatrix(a,b):
+    def getAugMatrix(a, b):
         aug = a
         for i in range(len(aug)):
             aug[i].append(b[i])

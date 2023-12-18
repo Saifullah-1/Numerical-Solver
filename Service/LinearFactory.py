@@ -1,9 +1,14 @@
 # from linear_methods.doolittle import *
 # from linear_methods.crout import *
 # from linear_methods.cholesky import *
+import numpy as np
+
+from linear_methods.Doolittle import Doolittle
 from linear_methods.Error import Error
 from linear_methods.Gauss import Gauss
 from linear_methods.HandleEquations import PrepareEquations
+from linear_methods.cholesky import Cholesky
+from linear_methods.crout import Crout
 from linear_methods.gauss_seidel import *
 from linear_methods.jacobi_iteration import *
 from linear_methods.GaussGordan import *
@@ -27,14 +32,11 @@ class LinearFactory:
         elif self.method == "gauss jordan":
             return GaussJordan(self.augmentedMatrix, self.coeff, self.unknowns, self.results, self.precision)
         elif self.method == "doolittle":
-            # return Doolittle()
-            pass
+            return Doolittle(self.coeff.tolist(), self.results.flatten().tolist(), self.unknowns.tolist(), self.precision)
         elif self.method == "crout":
-            # return Crout()
-            pass
+            return Crout(self.augmentedMatrix.tolist(), self.unknowns.tolist(), self.precision)
         elif self.method == "cholesky":
-            pass
-            # return Cholesky()
+            return Cholesky(np.array(self.coeff), np.array(self.results.flatten()), self.precision)
         elif self.method == "gauss seidel":
             return GaussSeidel(self.augmentedMatrix.tolist(), self.initial_guess, self.iterations, self.error, self.precision)
         elif self.method == "jacobi iteration":

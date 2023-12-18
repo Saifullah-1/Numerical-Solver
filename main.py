@@ -196,15 +196,15 @@ class MyWindow(QMainWindow):
                 elif lu_ind == 1:
                     start = time.perf_counter()
                     # call lu-doolittle function with param >> matrix, significant figures
-                    solution = f'Solution for {self.solver_dropdown.currentText()} of equation "{equations} with precision {precision}".'+ f'\nTime consumed : {time.perf_counter() - start} s'
+                    solution = LinearFactory(self.lu_dropdown.currentText(), equations_list, precision).create().execute() + f'\nTime consumed : {time.perf_counter() - start} s'
                 elif lu_ind == 2:
                     start = time.perf_counter()
                     # call lu-crout function with param >> matrix, significant figures
-                    solution = f'Solution for {self.solver_dropdown.currentText()} of equation "{equations} with precision {precision}".' + f'\nTime consumed : {time.perf_counter() - start} s'
+                    solution = LinearFactory(self.lu_dropdown.currentText(), equations_list, precision).create().execute() + f'\nTime consumed : {time.perf_counter() - start} s'
                 else:
                     start = time.perf_counter()
                     # call lu-cholesky function with param >> matrix, significant figures
-                    solution = f'Solution for {self.solver_dropdown.currentText()} of equation "{equations} with precision {precision}".' + f'\nTime consumed : {time.perf_counter() - start} s'
+                    solution = LinearFactory(self.lu_dropdown.currentText(), equations_list, precision).create().execute() + f'\nTime consumed : {time.perf_counter() - start} s'
             elif method_ind == 4:
                 # init_guess = self.handle_initial_guess(self.initial_guess.text())
                 init_guess = self.handle_initial_guess(self.initial_guess.text())
