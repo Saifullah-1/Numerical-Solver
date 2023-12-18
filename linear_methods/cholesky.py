@@ -76,25 +76,11 @@ class Cholesky:
         self.result += "\nUx = y\n"
 
         x[n-1] = self.sig_figs(y[n-1] / U[n-1, n-1])
-        self.result += f"\n{self.un[i]} = {y[n-1]} / {U[n-1 , n-1]} = {x[n-1]}\n"
+        self.result += f"\n{str(self.un[i])} = {y[n-1]} / {U[n-1 , n-1]} = {x[n-1]}\n"
 
         for i in range(n-2, -1, -1):
             sum = 0
             for j in range(i+1, n):
                 sum = self.sig_figs(sum + self.sig_figs(U[i, j] * x[j]))
             x[i] = self.sig_figs((y[i] - sum) / U[i, i])
-            self.result += f"{self.un[i]} = {y[i]} - {sum} / {U[i,i]} = {x[i]}\n"
-
-
-A = np.array([[5,2,-1],[2,8,1],[1,-1,4]], dtype= float)
-print(A)
-b = np.array([1,2,3], dtype=float)
-print(b)
-un = np.array(['x','y','z'])
-sf = 5
-solver = Cholesky(A,un, b, sf)
-result = solver.execute()
-
-
-print(result)
-
+            self.result += f"{str(self.un[i])} = {y[i]} - {sum} / {U[i,i]} = {x[i]}\n"

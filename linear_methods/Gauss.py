@@ -160,7 +160,3 @@ class Gauss:
         #     # final = BackSubLetters(augMatrix)
         
         return str
-
-
-
-

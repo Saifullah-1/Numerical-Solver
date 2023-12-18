@@ -71,22 +71,11 @@ class Doolittle:
         self.result += "\nUx = y\n"
 
         x[n-1] = self.sig_figs(y[n-1] / U[n-1, n-1])
-        self.result += f"\n{self.un[n-1]} = {y[n-1]} / {U[n-1 , n-1]} ={x[n-1]}\n"
+        self.result += f"\n{str(self.un[n-1])} = {y[n-1]} / {U[n-1 , n-1]} ={x[n-1]}\n"
 
         for i in range(n-2, -1, -1):
             sum = 0
             for j in range(i+1, n):
                 sum = self.sig_figs(sum + self.sig_figs(U[i, j] * x[j]))
             x[i] = self.sig_figs((y[i] - sum) / U[i, i])
-            self.result += f"{self.un[i]} = {y[i]} - {sum} / {U[i,i]} = {x[i]}\n" 
-
-A = np.array([[25,5,1],[64,8,1],[144,12,1]], dtype= float)
-
-b = np.array([106.8,177.2,279.2])
-sf = 5
-un = np.array(['x','y','z'])
-doolittle_solver = Doolittle(A,un, b, sf)
-result = doolittle_solver.execute()
-#
-#
-print(result)
+            self.result += f"{str(self.un[i])} = {y[i]} - {sum} / {U[i,i]} = {x[i]}\n"
