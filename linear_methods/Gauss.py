@@ -13,7 +13,7 @@ class Gauss:
         self.results = results
         self.precision = precision
 
-    def GaussSolver(self):
+    def execute(self):
         str = ""
         str = str + (f"\nLet A the Coefficient Matrix :\n{self.coeffs}\n\nX the Unknowns Vector :\n{self.unknowns}\n\nAnd B the Results Vector :\n{self.results}\n")
         str = str + (f"\nA * X = B\n\nTo Solve, We Must Get the Augmented Matrix :\n{self.augMatrix}\n")

@@ -2,14 +2,9 @@ import numpy as np
 import re
 from math import floor, log10
 
-# equ1 = '0.05462498 x1  -  1.89623    x2 - 79856 x3 = - 0.7845623'
-# equ2 = '4.849629 x1  -  1.8452603    x2 - 0.874652 x3 =  0.21618'
-# equ3 = '0x1  +00.08941981653    x2 -0.954625x3= 3.531284964'
-# equs = [equ1,equ2,equ3]
-# Prec = 5
-
 
 def PrepareEquations(equs):
+    
     def getEquations(equation):
         equation = equation.replace(" ",'').replace("-"," -").replace('+',' +')
         equation = equation.strip()
@@ -20,7 +15,7 @@ def PrepareEquations(equs):
         operands = []
         for equation in equations:
             for term in equation[:-1]:
-                ind =  -1
+                ind = -1
                 unknown = term[ind]
                 while unknown[0].isnumeric():
                     ind -= 1
@@ -29,7 +24,7 @@ def PrepareEquations(equs):
                     operands.append(unknown)
         return operands
     
-    def coefficientMatrix(unknowns,equations):
+    def coefficientMatrix(unknowns, equations):
         coeff = []
         for equation in equations:
             temp = unknowns
@@ -64,19 +59,34 @@ def PrepareEquations(equs):
         for i in range(len(aug)):
             aug[i].append(b[i])
         return aug
-    
-    n=len(equs) #Num of Equations
-    for i in range(len(equs)) : equs[i] = getEquations(equs[i])
-    unknowns=  Unknowns(equs)
-    coeffs = coefficientMatrix(unknowns,equs)
+
+    def Solvability(equs, unknowns):
+        msg = ""
+        numOfEqu = len(equs)
+        numOfUnknowns = len(unknowns)
+        if numOfEqu > numOfUnknowns:
+            msg = (f"System has an Infinite Number of Solutions")
+        elif numOfUnknowns > numOfEqu:
+            msg = (f"System has No Solutions")
+        else:
+            msg = 'continue'
+
+        return msg
+
+    n = len(equs) #Num of Equations
+    for i in range(len(equs)): equs[i] = getEquations(equs[i])
+    unknowns = Unknowns(equs)
+    msg = Solvability(equs, unknowns)
+
+    if msg != 'continue':
+        return 0, 0, 0, 0, msg
+
+    coeffs = coefficientMatrix(unknowns, equs)
     results = resultsMatrix(equs)
-    coeffs , results = convertNumbers(coeffs,results)
-    coeffs = np.array(coeffs).reshape(n,n)
-    results = np.array(results).reshape(n,1)
-    unknowns = np.array(unknowns).reshape(n,1)
+    coeffs, results = convertNumbers(coeffs, results)
+    coeffs = np.array(coeffs).reshape(n, n)
+    results = np.array(results).reshape(n, 1)
+    unknowns = np.array(unknowns).reshape(n, 1)
     augMatrix = np.matrix(coeffs)
-    augMatrix = np.append (augMatrix,results,axis=1)
-    
-    return augMatrix,coeffs,unknowns,results
-
-
+    augMatrix = np.append(augMatrix, results, axis=1)
+    return augMatrix, coeffs, unknowns, results, msg

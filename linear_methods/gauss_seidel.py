@@ -13,7 +13,6 @@ class GaussSeidel:
     def execute(self):
         for k in range(len(self.augmentedMatrix)):
             for y in range(len(self.augmentedMatrix)):
-                print(self.augmentedMatrix[k][y])
                 if k == y and self.augmentedMatrix[k][y] == 0:
                     return "NO SOLUTION"
 

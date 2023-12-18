@@ -1,6 +1,7 @@
 # from linear_methods.doolittle import *
 # from linear_methods.crout import *
 # from linear_methods.cholesky import *
+from linear_methods.Error import Error
 from linear_methods.Gauss import Gauss
 from linear_methods.HandleEquations import PrepareEquations
 from linear_methods.gauss_seidel import *
@@ -11,13 +12,16 @@ from linear_methods.GaussGordan import *
 class LinearFactory:
     def __init__(self, method, equations, precision, initial_guess=0, iterations=0, error=0):
         self.method = method.lower()
-        self.augmentedMatrix, self.coeff, self.unknowns, self.results = PrepareEquations(equations)
+        self.augmentedMatrix, self.coeff, self.unknowns, self.results, self.message = PrepareEquations(equations)
         self.precision = int(precision)
         self.initial_guess = initial_guess
         self.iterations = int(iterations)
         self.error = float(error)
 
     def create(self):
+        if self.message != "continue":
+            return Error(self.message)
+
         if self.method == "gauss elimination":
             return Gauss(self.augmentedMatrix, self.coeff, self.unknowns, self.results, self.precision)
         elif self.method == "gauss jordan":

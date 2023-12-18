@@ -184,11 +184,11 @@ class MyWindow(QMainWindow):
             elif method_ind == 1:
                 start = time.perf_counter()
                 # call gauss function with param >> matrix, significant figures
-                solution = LinearFactory(self.solver_dropdown.currentText(), equations_list, precision).create().GaussSolver() + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = LinearFactory(self.solver_dropdown.currentText(), equations_list, precision).create().execute() + f'\nTime consumed : {time.perf_counter() - start} s'
             elif method_ind == 2:
                 start = time.perf_counter()
                 # call gauss-jordan function with param >> matrix, significant figures
-                solution = LinearFactory(self.solver_dropdown.currentText(), equations_list, precision).create().GaussGordanSolver() + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = LinearFactory(self.solver_dropdown.currentText(), equations_list, precision).create().execute() + f'\nTime consumed : {time.perf_counter() - start} s'
             elif method_ind == 3:
                 lu_ind = self.lu_dropdown.currentIndex()
                 if lu_ind == 0:
