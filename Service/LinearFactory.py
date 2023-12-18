@@ -32,11 +32,11 @@ class LinearFactory:
         elif self.method == "gauss jordan":
             return GaussJordan(self.augmentedMatrix, self.coeff, self.unknowns, self.results, self.precision)
         elif self.method == "doolittle":
-            return Doolittle(np.array(self.coeff), np.array(self.results.flatten()), self.precision)
+            return Doolittle(np.array(self.coeff),np.array(self.unknowns) ,np.array(self.results.flatten()), self.precision)
         elif self.method == "crout":
-            return Crout(np.array(self.coeff), np.array(self.results.flatten()), self.precision)
+            return Crout(np.array(self.coeff),np.array(self.unknowns) ,np.array(self.results.flatten()), self.precision)
         elif self.method == "cholesky":
-            return Cholesky(np.array(self.coeff), np.array(self.results.flatten()), self.precision)
+            return Cholesky(np.array(self.coeff),np.array(self.unknowns) ,np.array(self.results.flatten()), self.precision)
         elif self.method == "gauss seidel":
             return GaussSeidel(self.augmentedMatrix.tolist(), self.initial_guess, self.iterations, self.error, self.precision)
         elif self.method == "jacobi iteration":

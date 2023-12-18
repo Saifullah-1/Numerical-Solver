@@ -3,9 +3,10 @@ from math import floor, log10
 
 
 class Crout:
-    def __init__(self, A, b, sf):
-        self.A = A
+    def __init__(self, A, un, b, sf):
         self.b = b
+        self.A = A
+        self.un = un
         self.sf = sf
         self.result = ""
 
@@ -61,7 +62,7 @@ class Crout:
         for i in range(1, n):
             sum = 0
             for j in range(i):
-                sum += self.sig_figs(L[i, j] * y[j])
+                sum = self.sig_figs(sum + self.sig_figs(L[i, j] * y[j]))
             y[i] = self.sig_figs((b[i] - sum) / L[i, i])
             self.result += f"y{1+i} = ( {b[i]} - {sum} ) / {L[i,i]} = {y[i]}\n"
 
@@ -71,11 +72,23 @@ class Crout:
         self.result += "\nUx = y\n"
 
         x[n-1] = y[n-1]
-        self.result += f"\nx{n} = {y[n-1]} \n"
+        self.result += f"\n{self.un[n-1]} = {y[n-1]} \n"
 
         for i in range(n-2, -1, -1):
             sum = 0
             for j in range(i+1, n):
-                sum +=self.sig_figs(U[i, j] * x[j])
+                sum = self.sig_figs(sum + self.sig_figs(U[i, j] * x[j]))
             x[i] = self.sig_figs((y[i] - sum) / U[i, i])
-            self.result += f"x{1+i} = ( {y[i]} - {sum} ) / {U[i,i]} = {x[i]}\n"
+            self.result += f"{self.un[i]} = ( {y[i]} - {sum} ) / {U[i,i]} = {x[i]}\n"
+
+
+A = np.array([[25,5,1],[64,8,1],[144,12,1]], dtype= float)
+
+b = np.array([106.8,177.2,279.2])
+sf = 5
+un = np.array(['x','y','z'])
+doolittle_solver = Crout(A,un, b, sf)
+result = doolittle_solver.execute()
+#
+#
+print(result)

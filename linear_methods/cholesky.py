@@ -4,11 +4,10 @@ from math import sqrt, floor, log10
 
 
 class Cholesky:
-    def __init__(self, A, b, sf):
+    def __init__(self, A, un, b, sf):
         self.b = b
-        print(b)
         self.A = A
-        # self.x = x
+        self.un = un
         self.sf = sf
         self.result = ""
 
@@ -67,7 +66,7 @@ class Cholesky:
         for i in range(1, n):
             sum = 0
             for j in range(i):
-                sum += self.sig_figs(L[i, j] * y[j])
+                sum = self.sig_figs(sum + self.sig_figs(L[i, j] * y[j]))
             y[i] = self.sig_figs((b[i] - sum) / L[i, i])
             self.result += f"y{1+i} = ( {b[i]} - {sum} ) / {L[i,i]} = {y[i]}\n"
 
@@ -77,23 +76,23 @@ class Cholesky:
         self.result += "\nUx = y\n"
 
         x[n-1] = self.sig_figs(y[n-1] / U[n-1, n-1])
-        self.result += f"\nx{n} = {y[n-1]} / {U[n-1 , n-1]} = {x[n-1]}\n"
+        self.result += f"\n{self.un[i]} = {y[n-1]} / {U[n-1 , n-1]} = {x[n-1]}\n"
 
         for i in range(n-2, -1, -1):
             sum = 0
             for j in range(i+1, n):
-                sum += self.sig_figs(U[i, j] * x[j])
+                sum = self.sig_figs(sum + self.sig_figs(U[i, j] * x[j]))
             x[i] = self.sig_figs((y[i] - sum) / U[i, i])
-            self.result += f"x{1+i} = {y[i+1]} - {sum} / {U[i+1,i+1]} = {x[i+1]}\n"
+            self.result += f"{self.un[i]} = {y[i]} - {sum} / {U[i,i]} = {x[i]}\n"
 
 
 A = np.array([[5,2,-1],[2,8,1],[1,-1,4]], dtype= float)
 print(A)
 b = np.array([1,2,3], dtype=float)
 print(b)
-# x = np.array(['x','y','z'])
+un = np.array(['x','y','z'])
 sf = 5
-solver = Cholesky(A, b, sf)
+solver = Cholesky(A,un, b, sf)
 result = solver.execute()
 
 

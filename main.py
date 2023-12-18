@@ -93,7 +93,7 @@ class MyWindow(QMainWindow):
 
         self.precision_spinbox = QSpinBox(self)
         self.precision_spinbox.setMinimum(2)
-        self.precision_spinbox.setValue(4)
+        self.precision_spinbox.setValue(5)
         self.precision_spinbox.setFixedSize(150, 30)
 
         self.solve_button = QPushButton('Solve', self)
