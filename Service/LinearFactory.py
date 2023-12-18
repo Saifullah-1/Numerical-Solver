@@ -10,7 +10,7 @@ from operations import Operations
 class LinearFactory:
     def __init__(self, method, equations, precision, initial_guess=None, stopping_cond=None):
         self.method = method.lower()
-        self.equations = Service.handle_equations(equations)
+        self.equations = Operations.handle_equations(equations)
         self.precision = int(precision)
         self.initial_guess = initial_guess
         self.stopping_cond = stopping_cond
