@@ -7,7 +7,9 @@ class Operations:
         pass
 
     @staticmethod
-    def sig_figs(x: float, precision: int):
+    def sig_figs(x, precision):
+        if x == 0:
+            return 0
         x = float(x)
         precision = int(precision)
         return round(x, -int(floor(log10(abs(x)))) + (precision - 1))
@@ -20,5 +22,3 @@ class Operations:
             if abs((new[i] - vect[i]) / new[i]) * 100 >= tolerance:
                 return false
         return true
-
-
