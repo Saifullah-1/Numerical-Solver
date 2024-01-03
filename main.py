@@ -133,7 +133,6 @@ class MyWindow(QMainWindow):
         self.scroll_sol.setFont(QFont("Open Sans", 12))
 
         # self.layout.addWidget(self.tips_label)
-        # self.layout.addSpacing(30)
         layout = QVBoxLayout(tab)
         layout.addWidget(self.equation_label, alignment=Qt.AlignHCenter)
         layout.addWidget(self.scroll_area, alignment=Qt.AlignHCenter)
