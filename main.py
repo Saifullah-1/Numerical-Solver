@@ -160,7 +160,7 @@ class MyWindow(QMainWindow):
         self.scroll_area2.setWidget(self.text_edit2)
         self.scroll_area2.setMinimumWidth(400)
         self.scroll_area2.setMinimumHeight(150)
-        self.text_edit2.setPlainText('x**3 - 3*x + 4')
+        self.text_edit2.setPlainText('x**3 + exp(-x) - 3*x + 4')
         self.param_label2 = QLabel('Parameters')  # adjust it
         self.param_label2.setAlignment(Qt.AlignHCenter)
         # self.param_label.setFont(font)
