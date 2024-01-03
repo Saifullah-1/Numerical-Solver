@@ -1,8 +1,8 @@
 import sys
 import time
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton, QComboBox, QVBoxLayout, QTextEdit, QWidget, \
-    QLineEdit, QScrollArea, QPlainTextEdit, QSpinBox, QDoubleSpinBox, QMessageBox, QFrame, QTabWidget, QHBoxLayout
-from PyQt5.QtGui import QIcon, QFont, QColor, QPalette
+    QLineEdit, QScrollArea, QPlainTextEdit, QSpinBox, QDoubleSpinBox, QMessageBox, QTabWidget, QHBoxLayout
+from PyQt5.QtGui import QIcon, QFont, QColor
 from PyQt5.QtCore import Qt
 from Service.LinearFactory import LinearFactory
 from Service.NonLinearFactory import NonLinearFactory
@@ -397,7 +397,7 @@ class MyWindow(QMainWindow):
         else:
             if method_ind == 0:
                 QMessageBox.warning(self, "Warning", "Please select method")
-            elif method_ind == 1: #Bisection
+            elif method_ind == 1:  # Bisection
                 start = time.perf_counter()
                 # call bisection function with param >> function, precision, initial_guess, max_iterations, epsilon
                 solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute() + f'\n\nTime consumed : {time.perf_counter() - start} s'

@@ -47,14 +47,6 @@ class RegulaFalsi:
                 f_xr = self.operations.sig_figs(self.func(xr), self.sf)
                 sol = sol + f"\ni = {i + 1} >> xl = {self.xl} | xu = {self.xu} | xr = {xr} | f(xl) = {f_xl} | f(xu) = {f_xu} | f(xr) = {f_xr}"
 
-                if f_xr == 0:
-                    return sol + f"\nRoot = {xr}"
-
-                elif f_xu * f_xr < 0:
-                    self.xl = xr
-                else:
-                    self.xu = xr
-
                 if temp != 0:
                     if xr == 0:
                         sol = sol + f" | Ea = {error}"
@@ -65,6 +57,15 @@ class RegulaFalsi:
                         break
                 else:
                     sol = sol + "\n"
+
+                if f_xr == 0:
+                    return sol + f"\nRoot = {xr}"
+
+                elif f_xu * f_xr < 0:
+                    self.xl = xr
+                else:
+                    self.xu = xr
+
             return sol + f"\nRoot = {xr}"
 
         except ZeroDivisionError:
