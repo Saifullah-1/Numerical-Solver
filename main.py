@@ -414,7 +414,7 @@ class MyWindow(QMainWindow):
                 # call newton raphson 1
                 start = time.perf_counter()
                 multiplicity = self.multiplicity_spinbox.text()
-                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[0]), int(multiplicity)) + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess[0], max_it, epsilon).create().execute(float(guess[0]), int(multiplicity)) + f'\nTime consumed : {time.perf_counter() - start} s'
             elif method_ind == 5:
                 start = time.perf_counter()
                 # call newton raphson 2
@@ -422,7 +422,7 @@ class MyWindow(QMainWindow):
             else:
                 start = time.perf_counter()
                 # call secant
-                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[1]), float(guess[0])) + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[0]), float(guess[1])) + f'\nTime consumed : {time.perf_counter() - start} s'
 
         self.solution_area2.setPlainText(solution)
 
