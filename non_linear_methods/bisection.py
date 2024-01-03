@@ -1,7 +1,7 @@
 import math
 
 from Service.operations import Operations
-
+import sympy as sp
 
 class Bisection:
     def __init__(self, equation, xu, xl, eps, max_it, significant):
@@ -12,9 +12,11 @@ class Bisection:
         self.max_it = max_it
         self.sf = significant
         self.operations = Operations
+        self.symbolic_expr = sp.sympify(equation)
+        self.lambda_func = sp.lambdify('x', self.symbolic_expr, 'numpy')
 
     def func(self, x):
-        return eval(self.equation)
+        return self.lambda_func(x)
 
     def execute(self):
         xr = 0

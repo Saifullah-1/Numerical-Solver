@@ -1,6 +1,7 @@
 from math import floor, log10
 import sympy as sp
 
+
 class Newton_modified_1:
     def __init__(self, equation, iterations, tolerance, figures):
         self.simplified_equation = self.equations_parser(equation)
