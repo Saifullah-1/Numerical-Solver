@@ -3,6 +3,7 @@ import math
 from Service.operations import Operations
 import sympy as sp
 
+
 class Bisection:
     def __init__(self, equation, xu, xl, eps, max_it, significant):
         self.equation = equation
@@ -51,7 +52,7 @@ class Bisection:
                         sol = sol + f" | Ea = undefined"
                     else:
                         error = self.operations.sig_figs(math.fabs((xr - temp) / xr), self.sf) * 100
-                        sol = sol + f" | Ea = {error}%"
+                        sol = sol + f" | Ea = {error}%\n"
                     if error <= self.eps:
                         break
 

@@ -1,8 +1,8 @@
 import math
 
 from Service.operations import Operations
-from Service.plotter import Plotter
 import sympy as sp
+
 
 class RegulaFalsi:
     def __init__(self, equation, xu, xl, eps, max_it, significant):
@@ -60,7 +60,7 @@ class RegulaFalsi:
                         sol = sol + f" | Ea = undefined"
                     else:
                         error = self.operations.sig_figs(math.fabs((xr - temp) / xr), self.sf) * 100
-                        sol = sol + f" | Ea = {error}%"
+                        sol = sol + f" | Ea = {error}%\n"
                     if error <= self.eps:
                         break
 
@@ -69,15 +69,3 @@ class RegulaFalsi:
         except ZeroDivisionError:
             return "Function is not continuous"
 
-
-# check the interval
-if __name__ == '__main__':
-    xl = -5
-    xu = 5
-    epsilon = 1
-    significant = 5
-    max_it = 100
-    equation = "x**4 - 2"
-    plot = Plotter(equation).plot_fun()
-    start = RegulaFalsi(equation, xu, xl, epsilon, max_it, significant)
-    print(start.execute())
