@@ -69,4 +69,6 @@ class Bisection:
             return sol + f"\nRoot = {xr}"
 
         except ZeroDivisionError:
-            return "Function is not continuous"
+            return "No Solution, Function is not continuous"
+        except ValueError:
+            return "No Solution"
