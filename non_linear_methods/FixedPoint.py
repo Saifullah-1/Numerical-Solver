@@ -57,7 +57,7 @@ class FixedPoint:
                 result += (f"\n  {i}           {lastX}          {relError}")
                 if i!= 1 : 
                     if relError != '---':
-                        if relError < self.EPS : break
+                        if relError <= self.EPS : break
                 if relError != '---' and lastError != '---' :
                     if (relError>=lastError) : nonDecreasingErrors += 1
                     else : nonDecreasingErrors = 0

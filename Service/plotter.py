@@ -24,5 +24,5 @@ class Plotter:
         plt.xlabel('x')
         plt.ylabel('f(x)')
         plt.legend()
-
+        plt.ylim(-10, 10)
         plt.show()
