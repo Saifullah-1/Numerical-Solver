@@ -40,7 +40,7 @@ class RegulaFalsi:
                 temp = xr
                 f_xl = self.operations.sig_figs(self.func(self.xl), self.sf)
                 f_xu = self.operations.sig_figs(self.func(self.xu), self.sf)
-                xr = (f_xu * self.xl - f_xl * self.xu) / (f_xu-f_xl)
+                xr = (f_xu * self.xl - f_xl * self.xu) / (f_xu - f_xl)
                 xr = self.operations.sig_figs(xr, self.sf)
                 f_xr = self.operations.sig_figs(self.func(xr), self.sf)
                 sol = sol + f"\ni = {i + 1} >> xl = {self.xl} | xu = {self.xu} | xr = {xr} | f(xl) = {f_xl} | f(xu) = {f_xu} | f(xr) = {f_xr}"

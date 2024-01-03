@@ -61,7 +61,6 @@ class Bisection:
                 else:
                     self.xu = xr
 
-
             return sol + f"\nRoot = {xr}"
 
         except ZeroDivisionError:

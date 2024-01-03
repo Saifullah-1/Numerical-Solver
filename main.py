@@ -19,7 +19,7 @@ class MyWindow(QMainWindow):
 
     def init_ui(self):
         self.resize(700, 700)
-        self.setWindowTitle('Linear Equations Solver')
+        self.setWindowTitle('Numerical Solver')
         self.setWindowIcon(QIcon('app_icon.png'))
         self.setMinimumSize(700, 700)
         self.main_widget = QWidget(self)
@@ -296,7 +296,7 @@ class MyWindow(QMainWindow):
             self.error_spinbox.show()
 
     def update_nonlinear(self):
-        if self.solver_dropdown2.currentIndex() == 4 or self.solver_dropdown2.currentIndex() == 5:
+        if self.solver_dropdown2.currentIndex() == 4:
             self.multiplicity_label.show()
             self.multiplicity_spinbox.show()
         else:
@@ -414,11 +414,11 @@ class MyWindow(QMainWindow):
                 # call newton raphson 1
                 start = time.perf_counter()
                 multiplicity = self.multiplicity_spinbox.text()
-                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess[0], max_it, epsilon).create().execute(float(guess[0]), int(multiplicity)) + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[0]), int(multiplicity)) + f'\nTime consumed : {time.perf_counter() - start} s'
             elif method_ind == 5:
                 start = time.perf_counter()
                 # call newton raphson 2
-                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute() + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[0])) + f'\nTime consumed : {time.perf_counter() - start} s'
             else:
                 start = time.perf_counter()
                 # call secant
