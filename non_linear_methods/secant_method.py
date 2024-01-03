@@ -50,25 +50,28 @@ class SecantMethod:
 
     def plot(self):
         sp.plot(self.simplified_equation, show=True)
-
     def execute(self, x_prev1, x_prev2):
-        solution = 1e10
-        prev = 0
-        check = 0
-        printlist = ""
-        for itr in range(self.iterations):
-            prev = solution
-            if((self.sig_figs(self.result(x_prev1), self.figures) -self.sig_figs(self.result(x_prev2), self.figures))==0):
-                break
-            solution = self.solve(x_prev1, x_prev2)
-            step = "iteration " + str(itr + 1) + ": " + str(solution) + "\n"
-            printlist = printlist + step
-            if self.test_tolerance(prev, solution):
-                check = 1
-                printlist = printlist + "Solution has been reached upon the given tolerance \n"
-                printlist = printlist+ "The root is : "+ str(solution)
-                break
-            x_prev1, x_prev2 = x_prev2, solution
-        if check == 0:
-            printlist = printlist + "Solution is not found upon the given tolerance"
-        return printlist
+            solution = 1e2
+            prev = 0
+            check = 0
+            printlist = ""
+            for itr in range(self.iterations):
+                prev = solution
+                if( itr>=1 and self.result(solution)==0):
+                    printlist=printlist+"the root is: "+str(solution)+"\n"
+                    check=1
+                    break
+                if((self.sig_figs(self.result(x_prev1), self.figures) -self.sig_figs(self.result(x_prev2), self.figures))==0):
+                    break
+                solution = self.solve(x_prev1, x_prev2)
+                step = "iteration " + str(itr + 1) + ": " + str(solution) + "\n"
+                printlist = printlist + step
+                if self.test_tolerance(prev, solution):
+                    check = 1
+                    printlist = printlist + "Solution has been reached upon the given tolerance \n"
+                    printlist = printlist + "The root is : " + str(solution)
+                    break
+                x_prev1, x_prev2 = x_prev2, solution
+            if check == 0:
+                printlist = printlist + "Solution is not found upon the given tolerance"
+            return printlist
