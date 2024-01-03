@@ -57,13 +57,14 @@ class RegulaFalsi:
 
                 if temp != 0:
                     if xr == 0:
-                        sol = sol + f" | Ea = undefined"
+                        sol = sol + f" | Ea = {error}"
                     else:
                         error = self.operations.sig_figs(math.fabs((xr - temp) / xr), self.sf) * 100
                         sol = sol + f" | Ea = {error}%\n"
                     if error <= self.eps:
                         break
-
+                else:
+                    sol = sol + "\n"
             return sol + f"\nRoot = {xr}"
 
         except ZeroDivisionError:

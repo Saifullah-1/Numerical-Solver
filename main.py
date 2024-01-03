@@ -400,28 +400,28 @@ class MyWindow(QMainWindow):
             elif method_ind == 1: #Bisection
                 start = time.perf_counter()
                 # call bisection function with param >> function, precision, initial_guess, max_iterations, epsilon
-                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute() + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute() + f'\n\nTime consumed : {time.perf_counter() - start} s'
             elif method_ind == 2:
                 start = time.perf_counter()
                 # call regula falsi function with param >> function, precision, initial_guess, max_iterations, epsilon
-                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute() + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute() + f'\n\nTime consumed : {time.perf_counter() - start} s'
             elif method_ind == 3:
                 start = time.perf_counter()
                 # call fixed point function with param >>
-                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute() + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute() + f'\n\nTime consumed : {time.perf_counter() - start} s'
             elif method_ind == 4:
                 # call newton raphson 1
                 start = time.perf_counter()
                 multiplicity = self.multiplicity_spinbox.text()
-                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[0]), int(multiplicity)) + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[0]), int(multiplicity)) + f'\n\nTime consumed : {time.perf_counter() - start} s'
             elif method_ind == 5:
                 start = time.perf_counter()
                 # call newton raphson 2
-                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[0])) + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[0])) + f'\n\nTime consumed : {time.perf_counter() - start} s'
             else:
                 start = time.perf_counter()
                 # call secant
-                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[0]), float(guess[1])) + f'\nTime consumed : {time.perf_counter() - start} s'
+                solution = NonLinearFactory(self.solver_dropdown2.currentText(), equation, precision, guess, max_it, epsilon).create().execute(float(guess[0]), float(guess[1])) + f'\n\nTime consumed : {time.perf_counter() - start} s'
 
         self.solution_area2.setPlainText(solution)
 

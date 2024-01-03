@@ -32,7 +32,7 @@ class Bisection:
                 self.xu = temp
 
             if self.func(self.xu) * self.func(self.xl) > 0:
-                sol = "Error! No root in this interval"
+                sol = "Error! No root in this interval or there exists an even no. of roots in this Interval"
                 return sol
             if self.func(self.xu) == 0:
                 return f"Root = {self.xu}"
@@ -49,12 +49,14 @@ class Bisection:
 
                 if temp != 0:
                     if xr == 0:
-                        sol = sol + f" | Ea = undefined"
+                        sol = sol + f" | Ea = {error}"
                     else:
                         error = self.operations.sig_figs(math.fabs((xr - temp) / xr), self.sf) * 100
                         sol = sol + f" | Ea = {error}%\n"
                     if error <= self.eps:
                         break
+                else:
+                    sol = sol + "\n"
 
                 if f_xr == 0:
                     return sol + f"\nRoot = {xr}"
