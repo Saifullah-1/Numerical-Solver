@@ -1,6 +1,7 @@
 from math import floor, log10
 import sympy as sp
 
+
 class SecantMethod:
     def __init__(self, equation, iterations, tolerance, figures):
         self.simplified_equation = self.equations_parser(equation)
@@ -29,7 +30,7 @@ class SecantMethod:
 
     def test_tolerance(self, prev, solution):
         if self.check_denominator(solution):
-            return True
+            return False
         return (abs((solution - prev))/abs(solution))*100 <= self.tolerance
 
     def result(self, value):

@@ -29,7 +29,7 @@ class Newton_modified_1:
 
     def test_tolerance(self, prev, solution):
         if self.check_denominator(solution):
-            return True
+            return False
         return (abs((solution - prev))/abs(solution))*100 <= self.tolerance
 
     def function_result(self, value):
