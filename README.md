@@ -45,5 +45,5 @@ Extend the application to include root-finding capabilities for non-linear equat
 
 ## Usage:
 1. Clone the repository.
-2. Run the GUI application.
+2. Run the GUI application by running [https://github.com/Saifullah-1/Numerical-Solver/blob/master/main.py](main.py).
 3. Input your equations, choose methods, and explore numerical analysis capabilities.
